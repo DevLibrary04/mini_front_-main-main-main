@@ -61,7 +61,7 @@ export default function NewsCard({ data }: dataProps) {
       if (!scraped) {
         // 수정 2) 스크랩 시, 이미 불러온 summary 상태를 사용함. (없으면 빈 문자열? "요약 없음"?)
         // const summaryText = await fetchSummary();
-        const res = await fetch("http://10.125.121.190:8080/api/liked", {
+        const res = await fetch("http://10.125.121.190:8081/api/liked", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export default function NewsCard({ data }: dataProps) {
       } else {
         // 스크랩 해제
         const res = await fetch(
-          `http://10.125.121.190:8080/api/liked?username=${encodeURIComponent(
+          `http://10.125.121.190:8081/api/liked?username=${encodeURIComponent(
             userId
           )}&link=${encodeURIComponent(data.link)}`,
           {
@@ -114,7 +114,7 @@ export default function NewsCard({ data }: dataProps) {
     (async () => {
       try {
         const res = await fetch(
-          `http://10.125.121.190:8080/api/liked/check?username=${encodeURIComponent(
+          `http://10.125.121.190:8081/api/liked/check?username=${encodeURIComponent(
             userId
           )}&link=${encodeURIComponent(data.link)}`,
           {

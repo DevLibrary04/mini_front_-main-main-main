@@ -20,7 +20,7 @@ export default function SignupForm() {
     }
 
     try {
-      const res = await fetch("http://10.125.121.190:8080/api/public/signup", {
+      const res = await fetch("http://10.125.121.190:8081/api/public/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

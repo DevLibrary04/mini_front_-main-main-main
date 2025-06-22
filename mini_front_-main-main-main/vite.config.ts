@@ -14,15 +14,24 @@ export default defineConfig(({ command }) => ({
   ],
   server: {
     proxy: {
+      // 기존 프록시 설정 유지
       '/v1': {
         target: 'https://openapi.naver.com',
         changeOrigin: true,
       },
       '/api': {
-      target: 'http://localhost:5000',
-      changeOrigin: true,
-      rewrite: path => path.replace(/^\/api/, '')
-    }
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      },
+      // 8081 포트 프록시 추가
+      '/backend': {
+        target: 'http://localhost:8081', // 8081 포트로 연결
+        changeOrigin: true,
+        secure: false,
+        // cookieDomainRewrite: { '10.125.121.190': '' },
+        rewrite: path => path.replace(/^\/backend/, '') // 경로 재작성
+      }
     },
   },
 }))
